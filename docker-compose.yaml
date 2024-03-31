@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  cronicle:
+    build:
+      context: .  # El contexto de construcción es el directorio actual
+      dockerfile: Dockerfile  # Especifica el nombre de tu Dockerfile
+    container_name: cronicle_container
+    ports:
+      - "3012:3012"  # Expone el puerto 3012 para la interfaz web de Cronicle
+    volumes:
+      - ./data:/opt/cronicle/data  # Persiste los datos de Cronicle
+      - ./logs:/opt/cronicle/logs  # Persiste los logs de Cronicle
+    restart: unless-stopped
